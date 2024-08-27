@@ -15,7 +15,7 @@ class RecipeListViewModelTests: BaseTestCase {
     @MainActor
     func testSearchAndPaging() async {
         let data = testRecipesJSON.data(using: .utf8)!
-        urlSession.enqueueResponseForRequest(response: (data, .init()))
+        urlSession.enqueueResponseForRequest(response: (data, .success))
         await vm.searchTextSubmitted("Pasta")
         
         XCTAssertEqual(vm.model.searchText, "Pasta")
@@ -32,7 +32,7 @@ class RecipeListViewModelTests: BaseTestCase {
         XCTAssertTrue(vm.model.hasNextPage)
         
         let secondPage = testRecipesSecondPageJSON.data(using: .utf8)!
-        urlSession.enqueueResponseForRequest(response: (secondPage, .init()))
+        urlSession.enqueueResponseForRequest(response: (secondPage, .success))
         await vm.getNextPage()
         
         XCTAssertEqual(vm.model.recipes.map(\.id), [716429, 715538, 715539, 715531, 715532, 715533, 715534, 715535, 715536, 715537, 1, 2, 3, 4, 5, 6])
@@ -59,12 +59,19 @@ class RecipeListViewModelTests: BaseTestCase {
         let invalidData = "invalid"
         let data = invalidData.data(using: .utf8)!
         
-        urlSession.enqueueResponseForRequest(response: (data, .init()))
+        urlSession.enqueueResponseForRequest(response: (data, .success))
         
         await vm.searchTextSubmitted("")
         
         XCTAssertTrue(vm.model.showError)
         XCTAssertFalse(vm.model.isLoading)
         XCTAssertEqual(vm.model.recipes.count, 0)
+        
+        let retryData = testRecipesJSON.data(using: .utf8)!
+        urlSession.enqueueResponseForRequest(response: (retryData, .success))
+        await vm.searchTextSubmitted("Pasta") // Simulating a retry
+ 
+        XCTAssertFalse(vm.model.showError)
+        XCTAssertEqual(vm.model.recipes.map(\.id), [716429, 715538, 715539, 715531, 715532, 715533, 715534, 715535, 715536, 715537])
     }
 }

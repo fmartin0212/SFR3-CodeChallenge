@@ -16,7 +16,7 @@ struct RecipeDetailView: View {
     }
     
     var body: some View {
-        RecipeDetailContentView(viewModel: viewModel, model: viewModel.model)
+        RecipeDetailContentView(viewModel: viewModel, model: viewModel.model, recipeID: recipeID)
             .task {
                 await viewModel.load(recipeID: recipeID)
             }
@@ -27,6 +27,7 @@ struct RecipeDetailView: View {
 struct RecipeDetailContentView: View {
     let viewModel: RecipeDetailViewModel
     let model: RecipeDetailModel
+    let recipeID: Int64
     
     var body: some View {
         content
@@ -39,7 +40,11 @@ struct RecipeDetailContentView: View {
         if model.isLoading {
             ProgressView()
         } else if model.showError {
-            Text("Error")
+            ErrorView {
+                Task {
+                    await viewModel.load(recipeID: recipeID)
+                }
+            }
         } else {
             details
         }
@@ -141,6 +146,6 @@ struct RecipeDetailView_Previews: PreviewProvider {
     }
     
     static var previews: some View {
-        RecipeDetailContentView(viewModel: .init(), model: detail)
+        RecipeDetailContentView(viewModel: .init(), model: detail, recipeID: 1)
     }
 }

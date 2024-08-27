@@ -20,6 +20,7 @@ extension UIImage {
         case heart
         case heartFill = "heart.fill"
         case forkKnife = "fork.knife"
+        case exclamationmarkCircleFill = "exclamationmark.circle.fill"
     }
     
     static func named(_ name: SystemName) -> UIImage {

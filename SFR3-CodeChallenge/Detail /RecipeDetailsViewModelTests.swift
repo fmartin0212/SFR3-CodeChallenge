@@ -23,7 +23,7 @@ class RecipeDetailsViewModelTests: BaseTestCase {
     @MainActor
     func testLoad() async {
         let data = recipeDetailsJSON.data(using: .utf8)!
-        urlSession.enqueueResponseForRequest(response: (data, .init()))
+        urlSession.enqueueResponseForRequest(response: (data, .success))
 
         await vm.load(recipeID: 1)
         
@@ -40,7 +40,7 @@ class RecipeDetailsViewModelTests: BaseTestCase {
     @MainActor
     func testIsFavorite() async {
         let data = recipeDetailsJSON.data(using: .utf8)!
-        urlSession.enqueueResponseForRequest(response: (data, .init()))
+        urlSession.enqueueResponseForRequest(response: (data, .success))
         
         let favorite = FavoriteRecipe(context: storage.context)
         favorite.identifier = 1
@@ -53,6 +53,27 @@ class RecipeDetailsViewModelTests: BaseTestCase {
         await vm.favoriteButtonPressed()
         
         XCTAssertFalse(vm.model.isFavorite)
+    }
+    
+    @MainActor
+    func testError() async {
+        let invalidData = "invalid"
+        let data = invalidData.data(using: .utf8)!
+        
+        urlSession.enqueueResponseForRequest(response: (data, .success))
+        
+        await vm.load(recipeID: 1)
+        
+        XCTAssertTrue(vm.model.showError)
+        XCTAssertNil(vm.model.recipeDetails)
+        
+        let success = recipeDetailsJSON.data(using: .utf8)!
+        urlSession.enqueueResponseForRequest(response: (success, .success))
+        
+        await vm.load(recipeID: 1) // Simulate retry
+        
+        XCTAssertNotNil(vm.model.recipeDetails)
+        XCTAssertFalse(vm.model.showError)
     }
 }
 

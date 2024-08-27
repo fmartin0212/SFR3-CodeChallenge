@@ -33,7 +33,7 @@ extension LocalStorageType {
     }
 }
 
-struct LocalStorage: LocalStorageType {
+class LocalStorage: LocalStorageType {
     let store: PersistenceController
     let context: NSManagedObjectContext
     

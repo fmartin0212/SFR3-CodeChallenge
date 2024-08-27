@@ -14,7 +14,7 @@ class RecipeRepositoryTests: BaseTestCase {
     func testGetRecipes() async {
         let data = testRecipesJSON.data(using: .utf8)!
         
-        urlSession.enqueueResponseForRequest(response: (data, .init()))
+        urlSession.enqueueResponseForRequest(response: (data, .success))
         
         let recipeResponse = try? await recipeRepository.getRecipes(searchText: "pasta", number: 1, offset: 2)
         let results = recipeResponse?.results

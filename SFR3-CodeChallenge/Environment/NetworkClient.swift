@@ -20,7 +20,7 @@ protocol URLSessionType {
 
 extension URLSession: URLSessionType {}
 
-struct NetworkClient: NetworkClientType {
+class NetworkClient: NetworkClientType {
     let urlSession: URLSessionType
     
     init() {
@@ -32,7 +32,13 @@ extension NetworkClientType {
     func data(for request: URLRequest) async throws -> Data {
         do {
             let response = try await urlSession.data(for: request, delegate: nil)
-            return response.0 // Handle more response types
+            guard let httpResponse = response.1 as? HTTPURLResponse else { throw NetworkClientError.unknown }
+            switch httpResponse.statusCode {
+            case (200...299):
+                return response.0
+            default:
+                throw NetworkClientError.backend
+            }
         } catch {
             throw error
         }
@@ -44,7 +50,13 @@ extension NetworkClientType {
         }
         do {
             let response = try await urlSession.data(from: url, delegate: nil)
-            return response.0 // Handle more response types
+            guard let httpResponse = response.1 as? HTTPURLResponse else { throw NetworkClientError.unknown }
+            switch httpResponse.statusCode {
+            case (200...299):
+                return response.0
+            default:
+                throw NetworkClientError.backend
+            }
         } catch {
             throw error
         }
@@ -53,4 +65,6 @@ extension NetworkClientType {
 
 enum NetworkClientError: Error {
     case url
+    case backend
+    case unknown
 }

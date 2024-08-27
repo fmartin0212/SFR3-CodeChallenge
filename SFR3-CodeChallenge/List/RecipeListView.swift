@@ -33,7 +33,11 @@ struct RecipeListViewContent: View {
             if model.isLoading {
                 ProgressView()
             } else if model.showError {
-                Text("Error")
+                ErrorView {
+                    Task {
+                        await viewModel.searchTextSubmitted(searchText)
+                    }
+                }
             } else  {
                 VStack(spacing: 16) {
                     picker
@@ -42,22 +46,24 @@ struct RecipeListViewContent: View {
             }
         }
         .searchable(text: $searchText)
+        .disabled(model.showError) // for lack of better solution. would probably roll my own search bar for more control over when it is visible
         .onSubmit(of: .search) {
             Task {
-                await viewModel.searchTextSubmitted(searchText)
+                await viewModel.searchTextSubmitted(searchText) // Would implement a debounce in production for a best user experience
             }
         }
     }
     
     private var picker: some View {
-        Picker(NSLocalizedString("List Source", comment: ""), selection: Binding(get: {
-            model.state
-        }, set: {
-            viewModel.stateSelected($0)
-        })) {
-            Text(NSLocalizedString("All", comment: "")).tag(RecipeListViewModel.State.api)
-            Text(NSLocalizedString("Favorites", comment: "")).tag(RecipeListViewModel.State.favorites)
-        }
+        Picker(NSLocalizedString("List Source", comment: ""), selection: Binding(
+            get: {
+                model.state
+            }, set: {
+                viewModel.stateSelected($0)
+            })) {
+                Text(NSLocalizedString("All", comment: "")).tag(RecipeListViewModel.State.api)
+                Text(NSLocalizedString("Favorites", comment: "")).tag(RecipeListViewModel.State.favorites)
+            }
         .pickerStyle(.segmented)
         .padding()
     }
@@ -169,5 +175,26 @@ struct RecipeListViewContent: View {
             }
             .listRowSeparator(.hidden)
         }
+    }
+}
+
+struct RecipeListView_Previews: PreviewProvider {
+    static var list: RecipeListModel {
+        var model = RecipeListModel()
+        model.recipes = [
+            .init(id: 1, title: "burger", image: ""),
+            .init(id: 2, title: "fries", image: ""),
+            .init(id: 3, title: "milkshake", image: "")
+        ]
+        return model
+    }
+    static var error: RecipeListModel {
+        var model = RecipeListModel()
+        model.showError = true
+        return model
+    }
+    static var previews: some View {
+        RecipeListViewContent(viewModel: .init(), model: list)
+        RecipeListViewContent(viewModel: .init(), model: error)
     }
 }

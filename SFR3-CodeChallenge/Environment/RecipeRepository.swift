@@ -90,9 +90,9 @@ extension RecipeRepositoryType {
     
     func removeFavorite(recipeID: Int64) throws {
         guard let favorite = storage.getObject(withType: FavoriteRecipe.self, identifier: recipeID) else {
-            // throw error
-            return
+            throw RecipeRepositoryError.generic
         }
+        
         storage.delete(object: favorite)
     }
     
