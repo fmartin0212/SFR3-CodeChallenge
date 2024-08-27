@@ -46,7 +46,6 @@ struct RecipeListViewContent: View {
             }
         }
         .searchable(text: $searchText)
-        .disabled(model.showError) // for lack of better solution. would probably roll my own search bar for more control over when it is visible
         .onSubmit(of: .search) {
             Task {
                 await viewModel.searchTextSubmitted(searchText) // Would implement a debounce in production for a best user experience
