@@ -12,34 +12,13 @@ import XCTest
 class RecipeRepositoryTests: BaseTestCase {
     /// Demonstrates that NetworkClient is testable
     func testGetRecipes() async {
-        let json = """
-{
-        "offset": 0,
-        "number": 2,
-        "results": [
-            {
-                "id": 716429,
-                "title": "Pasta with Garlic, Scallions, Cauliflower & Breadcrumbs",
-                "image": "https://img.spoonacular.com/recipes/716429-312x231.jpg",
-                "imageType": "jpg",
-            },
-            {
-                "id": 715538,
-                "title": "What to make for dinner tonight?? Bruschetta Style Pork & Pasta",
-                "image": "https://img.spoonacular.com/recipes/715538-312x231.jpg",
-                "imageType": "jpg",
-            }
-        ],
-        "totalResults": 86
-    }
-"""
-        let data = json.data(using: .utf8)!
+        let data = testRecipesJSON.data(using: .utf8)!
         
         urlSession.enqueueResponseForRequest(response: (data, .init()))
         
         let recipeResponse = try? await recipeRepository.getRecipes(searchText: "pasta", number: 1, offset: 2)
         let results = recipeResponse?.results
-        XCTAssertEqual(results?.map(\.id), [716429, 715538])
+        XCTAssertEqual(results?.map(\.id), [716429, 715538, 715539, 715531, 715532, 715533, 715534, 715535, 715536, 715537])
     }
     
     /// Demonstrates that CoreData is testable

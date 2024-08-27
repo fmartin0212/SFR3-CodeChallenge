@@ -27,17 +27,13 @@
 		B733C9372C7D3A37008D64B1 /* TestNetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = B733C9362C7D3A37008D64B1 /* TestNetworkClient.swift */; };
 		B733C93A2C7D3A5E008D64B1 /* RecipeRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B733C9392C7D3A5E008D64B1 /* RecipeRepositoryTests.swift */; };
 		B733C93C2C7D3B70008D64B1 /* RecipeDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B733C93B2C7D3B70008D64B1 /* RecipeDetailView.swift */; };
+		B733C9402C7D43CE008D64B1 /* RecipeListViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B733C93F2C7D43CE008D64B1 /* RecipeListViewModelTests.swift */; };
+		B733C9422C7D490D008D64B1 /* RecipeDetailsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B733C9412C7D490D008D64B1 /* RecipeDetailsViewModelTests.swift */; };
+		B733C9442C7D5197008D64B1 /* RecipeDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B733C9432C7D5197008D64B1 /* RecipeDetailViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
 		B733C8FE2C7D3873008D64B1 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = B733C8E02C7D3871008D64B1 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = B733C8E72C7D3871008D64B1;
-			remoteInfo = "SFR3-CodeChallenge";
-		};
-		B733C9082C7D3873008D64B1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = B733C8E02C7D3871008D64B1 /* Project object */;
 			proxyType = 1;
@@ -54,7 +50,6 @@
 		B733C8F42C7D3873008D64B1 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		B733C8F72C7D3873008D64B1 /* SFR3_CodeChallenge.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SFR3_CodeChallenge.xcdatamodel; sourceTree = "<group>"; };
 		B733C8FD2C7D3873008D64B1 /* SFR3-CodeChallengeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "SFR3-CodeChallengeTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		B733C9072C7D3873008D64B1 /* SFR3-CodeChallengeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "SFR3-CodeChallengeUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B733C91A2C7D389D008D64B1 /* RecipeListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipeListView.swift; sourceTree = "<group>"; };
 		B733C91D2C7D38A9008D64B1 /* RecipeListViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipeListViewModel.swift; sourceTree = "<group>"; };
 		B733C91F2C7D38C0008D64B1 /* Image+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Image+Extensions.swift"; sourceTree = "<group>"; };
@@ -70,6 +65,9 @@
 		B733C9362C7D3A37008D64B1 /* TestNetworkClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestNetworkClient.swift; sourceTree = "<group>"; };
 		B733C9392C7D3A5E008D64B1 /* RecipeRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeRepositoryTests.swift; sourceTree = "<group>"; };
 		B733C93B2C7D3B70008D64B1 /* RecipeDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeDetailView.swift; sourceTree = "<group>"; };
+		B733C93F2C7D43CE008D64B1 /* RecipeListViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeListViewModelTests.swift; sourceTree = "<group>"; };
+		B733C9412C7D490D008D64B1 /* RecipeDetailsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeDetailsViewModelTests.swift; sourceTree = "<group>"; };
+		B733C9432C7D5197008D64B1 /* RecipeDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeDetailViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,13 +79,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		B733C8FA2C7D3873008D64B1 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		B733C9042C7D3873008D64B1 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -112,7 +103,6 @@
 			children = (
 				B733C8E82C7D3871008D64B1 /* SFR3-CodeChallenge.app */,
 				B733C8FD2C7D3873008D64B1 /* SFR3-CodeChallengeTests.xctest */,
-				B733C9072C7D3873008D64B1 /* SFR3-CodeChallengeUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -145,7 +135,8 @@
 			children = (
 				B733C9382C7D3A4E008D64B1 /* Environment */,
 				B733C9392C7D3A5E008D64B1 /* RecipeRepositoryTests.swift */,
-				B733C93E2C7D4252008D64B1 /* SFR3-CodeChallengeUITests */,
+				B733C93F2C7D43CE008D64B1 /* RecipeListViewModelTests.swift */,
+				B733C9412C7D490D008D64B1 /* RecipeDetailsViewModelTests.swift */,
 			);
 			path = "SFR3-CodeChallengeTests";
 			sourceTree = "<group>";
@@ -203,15 +194,9 @@
 			isa = PBXGroup;
 			children = (
 				B733C93B2C7D3B70008D64B1 /* RecipeDetailView.swift */,
+				B733C9432C7D5197008D64B1 /* RecipeDetailViewModel.swift */,
 			);
 			path = "Detail ";
-			sourceTree = "<group>";
-		};
-		B733C93E2C7D4252008D64B1 /* SFR3-CodeChallengeUITests */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "SFR3-CodeChallengeUITests";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -252,24 +237,6 @@
 			productReference = B733C8FD2C7D3873008D64B1 /* SFR3-CodeChallengeTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		B733C9062C7D3873008D64B1 /* SFR3-CodeChallengeUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = B733C9172C7D3873008D64B1 /* Build configuration list for PBXNativeTarget "SFR3-CodeChallengeUITests" */;
-			buildPhases = (
-				B733C9032C7D3873008D64B1 /* Sources */,
-				B733C9042C7D3873008D64B1 /* Frameworks */,
-				B733C9052C7D3873008D64B1 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				B733C9092C7D3873008D64B1 /* PBXTargetDependency */,
-			);
-			name = "SFR3-CodeChallengeUITests";
-			productName = "SFR3-CodeChallengeUITests";
-			productReference = B733C9072C7D3873008D64B1 /* SFR3-CodeChallengeUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -284,10 +251,6 @@
 						CreatedOnToolsVersion = 15.4;
 					};
 					B733C8FC2C7D3873008D64B1 = {
-						CreatedOnToolsVersion = 15.4;
-						TestTargetID = B733C8E72C7D3871008D64B1;
-					};
-					B733C9062C7D3873008D64B1 = {
 						CreatedOnToolsVersion = 15.4;
 						TestTargetID = B733C8E72C7D3871008D64B1;
 					};
@@ -308,7 +271,6 @@
 			targets = (
 				B733C8E72C7D3871008D64B1 /* SFR3-CodeChallenge */,
 				B733C8FC2C7D3873008D64B1 /* SFR3-CodeChallengeTests */,
-				B733C9062C7D3873008D64B1 /* SFR3-CodeChallengeUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -330,13 +292,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		B733C9052C7D3873008D64B1 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -345,6 +300,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B733C9292C7D393B008D64B1 /* LocalStorage.swift in Sources */,
+				B733C9442C7D5197008D64B1 /* RecipeDetailViewModel.swift in Sources */,
 				B733C92B2C7D3953008D64B1 /* NetworkClient.swift in Sources */,
 				B733C9232C7D3901008D64B1 /* Cardified.swift in Sources */,
 				B733C9262C7D391C008D64B1 /* RecipeRepository.swift in Sources */,
@@ -365,17 +321,12 @@
 			files = (
 				B733C92F2C7D3973008D64B1 /* BaseTestCase.swift in Sources */,
 				B733C9332C7D3A08008D64B1 /* TestLocalStorage.swift in Sources */,
+				B733C9402C7D43CE008D64B1 /* RecipeListViewModelTests.swift in Sources */,
+				B733C9422C7D490D008D64B1 /* RecipeDetailsViewModelTests.swift in Sources */,
 				B733C93A2C7D3A5E008D64B1 /* RecipeRepositoryTests.swift in Sources */,
 				B733C9352C7D3A22008D64B1 /* TestURLSession.swift in Sources */,
 				B733C9312C7D39E1008D64B1 /* TestRecipeRepository.swift in Sources */,
 				B733C9372C7D3A37008D64B1 /* TestNetworkClient.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		B733C9032C7D3873008D64B1 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -386,11 +337,6 @@
 			isa = PBXTargetDependency;
 			target = B733C8E72C7D3871008D64B1 /* SFR3-CodeChallenge */;
 			targetProxy = B733C8FE2C7D3873008D64B1 /* PBXContainerItemProxy */;
-		};
-		B733C9092C7D3873008D64B1 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = B733C8E72C7D3871008D64B1 /* SFR3-CodeChallenge */;
-			targetProxy = B733C9082C7D3873008D64B1 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -610,42 +556,6 @@
 			};
 			name = Release;
 		};
-		B733C9182C7D3873008D64B1 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = W53Z73CT67;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.frankmartin.SFR3-CodeChallengeUITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = "SFR3-CodeChallenge";
-			};
-			name = Debug;
-		};
-		B733C9192C7D3873008D64B1 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = W53Z73CT67;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.frankmartin.SFR3-CodeChallengeUITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = "SFR3-CodeChallenge";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -672,15 +582,6 @@
 			buildConfigurations = (
 				B733C9152C7D3873008D64B1 /* Debug */,
 				B733C9162C7D3873008D64B1 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		B733C9172C7D3873008D64B1 /* Build configuration list for PBXNativeTarget "SFR3-CodeChallengeUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				B733C9182C7D3873008D64B1 /* Debug */,
-				B733C9192C7D3873008D64B1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
