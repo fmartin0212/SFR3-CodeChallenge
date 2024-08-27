@@ -30,6 +30,7 @@
 		B733C9402C7D43CE008D64B1 /* RecipeListViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B733C93F2C7D43CE008D64B1 /* RecipeListViewModelTests.swift */; };
 		B733C9422C7D490D008D64B1 /* RecipeDetailsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B733C9412C7D490D008D64B1 /* RecipeDetailsViewModelTests.swift */; };
 		B733C9442C7D5197008D64B1 /* RecipeDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B733C9432C7D5197008D64B1 /* RecipeDetailViewModel.swift */; };
+		B733C9462C7D52C5008D64B1 /* RecipeDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = B733C9452C7D52C5008D64B1 /* RecipeDetail.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,6 +69,7 @@
 		B733C93F2C7D43CE008D64B1 /* RecipeListViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeListViewModelTests.swift; sourceTree = "<group>"; };
 		B733C9412C7D490D008D64B1 /* RecipeDetailsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeDetailsViewModelTests.swift; sourceTree = "<group>"; };
 		B733C9432C7D5197008D64B1 /* RecipeDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeDetailViewModel.swift; sourceTree = "<group>"; };
+		B733C9452C7D52C5008D64B1 /* RecipeDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeDetail.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -195,6 +197,7 @@
 			children = (
 				B733C93B2C7D3B70008D64B1 /* RecipeDetailView.swift */,
 				B733C9432C7D5197008D64B1 /* RecipeDetailViewModel.swift */,
+				B733C9452C7D52C5008D64B1 /* RecipeDetail.swift */,
 			);
 			path = "Detail ";
 			sourceTree = "<group>";
@@ -309,6 +312,7 @@
 				B733C91B2C7D389D008D64B1 /* RecipeListView.swift in Sources */,
 				B733C93C2C7D3B70008D64B1 /* RecipeDetailView.swift in Sources */,
 				B733C9202C7D38C0008D64B1 /* Image+Extensions.swift in Sources */,
+				B733C9462C7D52C5008D64B1 /* RecipeDetail.swift in Sources */,
 				B733C91E2C7D38AA008D64B1 /* RecipeListViewModel.swift in Sources */,
 				B733C8EC2C7D3871008D64B1 /* SFR3_CodeChallengeApp.swift in Sources */,
 				B733C92D2C7D3961008D64B1 /* AppEnvironment.swift in Sources */,

@@ -11,17 +11,28 @@ import SwiftUI
 @MainActor
 struct RecipeListView: View {
     @StateObject private var viewModel = RecipeListViewModel()
+    
+    var body: some View {
+        RecipeListViewContent(viewModel: viewModel, model: viewModel.model)
+    }
+}
+
+@MainActor
+struct RecipeListViewContent: View {
     @FetchRequest(
         sortDescriptors: [NSSortDescriptor(keyPath: \FavoriteRecipe.identifier, ascending: true)],
         animation: .default)
     private var favorites: FetchedResults<FavoriteRecipe>
     @State var searchText = ""
     
+    let viewModel: RecipeListViewModel
+    let model: RecipeListModel
+    
     var body: some View {
         NavigationView {
-            if viewModel.model.isLoading {
+            if model.isLoading {
                 ProgressView()
-            } else if viewModel.model.showError {
+            } else if model.showError {
                 Text("Error")
             } else  {
                 VStack(spacing: 16) {
@@ -40,7 +51,7 @@ struct RecipeListView: View {
     
     private var picker: some View {
         Picker(NSLocalizedString("List Source", comment: ""), selection: Binding(get: {
-            viewModel.model.state
+            model.state
         }, set: {
             viewModel.stateSelected($0)
         })) {
@@ -53,7 +64,7 @@ struct RecipeListView: View {
     
     @ViewBuilder
     private var list: some View {
-        if viewModel.model.state == .api {
+        if model.state == .api {
             recipes
         } else {
             favoritesList
@@ -62,7 +73,7 @@ struct RecipeListView: View {
     
     private var recipes: some View {
         List {
-            ForEach(viewModel.model.recipes, id: \.id) { recipe in
+            ForEach(model.recipes, id: \.id) { recipe in
                 NavigationLink {
                     RecipeDetailView(recipeID: recipe.id)
                 } label: {
@@ -144,7 +155,7 @@ struct RecipeListView: View {
     
     @ViewBuilder
     private var nextPageLoader: some View {
-        if viewModel.model.hasNextPage {
+        if model.hasNextPage {
             HStack {
                 Spacer()
                 ProgressView()

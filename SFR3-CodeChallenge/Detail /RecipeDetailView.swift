@@ -16,19 +16,29 @@ struct RecipeDetailView: View {
     }
     
     var body: some View {
-        content
+        RecipeDetailContentView(viewModel: viewModel, model: viewModel.model)
             .task {
                 await viewModel.load(recipeID: recipeID)
             }
-            .navigationTitle(viewModel.model.recipeDetails?.title ?? "")
+    }
+}
+
+@MainActor
+struct RecipeDetailContentView: View {
+    let viewModel: RecipeDetailViewModel
+    let model: RecipeDetailModel
+    
+    var body: some View {
+        content
+            .navigationTitle(model.recipeDetails?.title ?? "")
             .navigationBarTitleDisplayMode(.inline)
     }
     
     @ViewBuilder
     var content: some View {
-        if viewModel.model.isLoading {
+        if model.isLoading {
             ProgressView()
-        } else if viewModel.model.showError {
+        } else if model.showError {
             Text("Error")
         } else {
             details
@@ -40,7 +50,7 @@ struct RecipeDetailView: View {
             ScrollView {
                 VStack {
                     image(width: proxy.size.width)
-                    VStack(alignment: .leading, spacing: 16) {
+                    VStack(alignment: .leading, spacing: 36) {
                         favoriteButton
                         ingredients
                         cookingTime
@@ -53,14 +63,14 @@ struct RecipeDetailView: View {
     }
     
     func image(width: Double) -> some View {
-        AsyncImage(url: URL(string: viewModel.model.imageURL), content: { image in
+        AsyncImage(url: URL(string: model.imageURL), content: { image in
             image
                 .resizable()
                 .frame(width: width, height: 200)
                 .aspectRatio(contentMode: .fit)
         }, placeholder: {
-            Image.named(.heart)
-                .frame(width: 200, height: 200)
+            Image.named(.forkKnife)
+                .frame(width: 200, height: 200) // Would use a better placeholder IRL
         })
     }
     
@@ -72,7 +82,7 @@ struct RecipeDetailView: View {
                     await viewModel.favoriteButtonPressed()
                 }
             } label: {
-                if viewModel.model.isFavorite {
+                if model.isFavorite {
                     Image.named(.heartFill)
                         .foregroundStyle(Color.red)
                 } else {
@@ -85,8 +95,10 @@ struct RecipeDetailView: View {
     }
     
     var ingredients: some View {
-        VStack {
-            ForEach(viewModel.model.ingredients, id: \.id) { ingredient in
+        VStack(alignment: .leading, spacing: 8) {
+            Text(NSLocalizedString("Ingredients", comment: ""))
+                .font(.title2)
+            ForEach(model.ingredients, id: \.id) { ingredient in
                 HStack {
                     Text(ingredient.name)
                     Spacer()
@@ -96,11 +108,39 @@ struct RecipeDetailView: View {
         }
     }
     
+    @ViewBuilder
     var cookingTime: some View {
-        Text(viewModel.model.cookingMinutes)
+        if !model.cookingMinutes.isEmpty {
+            VStack(alignment: .leading, spacing: 8) {
+                Text(NSLocalizedString("Cook time", comment: ""))
+                    .font(.title2)
+                Text(model.cookingMinutes)
+            }
+        }
     }
     
     var instructions: some View {
-        Text(viewModel.model.instructions)
+        VStack(alignment: .leading, spacing: 8) {
+            Text(NSLocalizedString("Instructions", comment: ""))
+                .font(.title2)
+            Text(model.instructions)
+        }
+    }
+}
+
+struct RecipeDetailView_Previews: PreviewProvider {
+    static var detail: RecipeDetailModel {
+        var detail = RecipeDetailModel()
+        detail.recipeDetails = .init(id: 1, title: "Recipe name", image: "", cookingMinutes: 25, instructions: "instructions", extendedIngredients: [
+            .init(name: "Ingredient 1", amount: 0.5, id: 1),
+            .init(name: "Ingredient 2", amount: 1.5, id: 2)
+        ]
+        )
+        detail.isFavorite = true
+        return detail
+    }
+    
+    static var previews: some View {
+        RecipeDetailContentView(viewModel: .init(), model: detail)
     }
 }
